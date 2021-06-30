@@ -2,7 +2,8 @@ logo_title: Miozus 喵族
 
 style: black
 
-favicon: /favicon.ico
+# 原来没有设定，我自己添加的 元素和js控制，跟随星期变换
+# favicon: img/favicon_3.ico
 
 menu:
   作品: /project
