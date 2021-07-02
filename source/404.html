@@ -11,6 +11,8 @@
     <style>
         /* 
 主题换色
+based on https://dribbble.com/shots/3913847-404-page
+
 position
 old
 new
@@ -218,6 +220,7 @@ no-change
             width: 12px;
             height: 12px;
             background: #464a56;
+            /* background: #ef5454; */
             border-radius: 50%;
             margin: 0 10px;
             position: absolute;
@@ -228,6 +231,7 @@ no-change
             width: 12px;
             height: 12px;
             background: #464a56;
+            /* background: #ef5454; */
             border-radius: 50%;
             margin: 0 10px;
             position: absolute;
@@ -376,15 +380,32 @@ no-change
 
     <script src="/libs/jquery.min.js"></script>
     <script>
-        // 👀 脑睛跟随鼠标动
+        // 👀 脑睛跟随鼠标 或 手机陀螺仪移，做平移活动
         $(document).ready(function() {
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            if (isMobile) {
+                moveEyesWithGravity();
+            } else {
+                moveEyesWithMouse();
+            }
+
+            $('#back-link').attr('href', document.referrer);
+            $('#back-link').click(function() {
+                parent.history.back();
+                return false;
+            })
+
+            // 📅 favicon : dynamic weekday
+            var weekday = new Date().getDay();
+            $("#favicon").attr("href", "/img/favicon_" + weekday + ".ico");
+        });
+
+
+        function moveEyesWithMouse() {
             var pageX = $(document).width();
             var pageY = $(document).height();
             var mouseY = 0;
             var mouseX = 0;
-
-            // 📅
-            var weekday = new Date().getDay();
 
             $(document).mousemove(function(event) {
                 //verticalAxis
@@ -396,22 +417,53 @@ no-change
                 $('.box__ghost-eyes').css({
                     'transform': 'translate(' + xAxis + '%,-' + yAxis + '%)'
                 });
-                // console.log('X: ' + xAxis);
             });
-            $('#back-link').attr('href', document.referrer);
-            $('#back-link').click(function() {
-                    parent.history.back();
-                    return false;
-                })
-                // favicon : dynamic weekday
-            $("#favicon").attr("href", "/img/favicon_" + weekday + ".ico");
-        });
-        //based on https://dribbble.com/shots/3913847-404-page
+        }
+
+        function moveEyesWithGravity() {
+            window.addEventListener('deviceorientation', function(event) {
+                // 定义域，锁定正面
+                var z_temp;
+                if (event.gamma > 60) {
+                    z_temp = 60;
+                } else if (event.gamma < -60) {
+                    z_temp = -60;
+                } else {
+                    z_temp = event.gamma
+                }
+                // 周期函数（0，1）
+                var z = -getSinValue(z_temp) * 40 - 50;
+                var y = getSinValue(event.beta) * 120 + 30;
+                $('.box__ghost-eyes').css({
+                    'transform': 'translate(' + z + '%,-' + y + '%)'
+                });
+
+                // var output = document.querySelector('.output_3D');
+                // output.innerText =
+                //     decimalOne(event.alpha) + ' : ' +
+                //     decimalOne(event.beta) + ' : ' +
+                //     decimalOne(event.gamma) +
+                //     ' | (' + decimalOne(z) + ', ' + decimalOne(y) + ')';
+
+            })
+        }
+
+        function getSinValue(angle) {
+            return Math.sin(angle * Math.PI / 180)
+        }
+
+        function decimalOne(num) {
+            let arr = parseInt(num * 10).toString().split('');
+            arr.splice(-1, 0, '.');
+            return arr.join('');
+        }
     </script>
 </head>
 
 <body>
+
     <div class="box">
+        <!-- <p class="output_3D"></p> -->
         <div class="box__ghost">
             <div class="symbol"></div>
             <div class="symbol"></div>
