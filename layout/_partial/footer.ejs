@@ -1,53 +1,56 @@
 <div class="footer" id="footer">
-    <p>© 2021 Miozus 版权所有  
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
+    <p>© 2021 Miozus 版权所有 <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;"> <input type="checkbox" name="switch" id="update_style"> <span class="el-switch-style"></span>
         </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
     </p>
     <p>
-            <a href="https://beian.miit.gov.cn/" target="_blank">黔ICP备2021005279号-1</a>
+        <img id="footer_logo" src="/img/gongwangan.png" href="http://www.beian.gov.cn/portal/recordQuery" />
+        <a href="http://www.beian.gov.cn/portal/recordQuery" target="_blank">黔公网安备52263602000128</a>
+        <a href="https://beian.miit.gov.cn/" target="_blank">黔ICP备2021005279号-1</a>
+        <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1280114886&web_id=1280114886"></script>
     </p>
 </div>
 <input type="hidden" id="web_style" value="<%= theme.style %>">
 <input type="hidden" id="valine_appid" value="<%= theme.valine.appId %>">
 <input type="hidden" id="valine_appKey" value="<%= theme.valine.appKey %>">
 <%- js('libs/jquery.min.js') %>
-<%- js('libs/highlight/highlight.pack.js') %>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<%- js('js/js.js') %>
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
-
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-.vpower.txt-right {
-    display: none;
-}
-.vempty {
-    visibility: hidden
-}
-</style>
+    <%- js('libs/highlight/highlight.pack.js') %>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <%- js('js/js.js') %>
+            <style type="text/css">
+                .v * {
+                    color: #698fca;
+                }
+                
+                .v .vlist .vcard .vhead .vsys {
+                    color: #3a3e4a;
+                }
+                
+                .v .vlist .vcard .vh .vmeta .vat {
+                    color: #638fd5;
+                }
+                
+                .v .vlist .vcard .vhead .vnick {
+                    color: #6ba1ff;
+                }
+                
+                .v a {
+                    color: #8696b1;
+                }
+                
+                .v .vlist .vcard .vhead .vnick:hover {
+                    color: #669bfc;
+                }
+                
+                .vpower.txt-right {
+                    display: none;
+                }
+                
+                .vempty {
+                    visibility: hidden
+                }
+                
+                #footer_logo {
+                    width: 15px;
+                    height: 15px;
+                }
+            </style>
